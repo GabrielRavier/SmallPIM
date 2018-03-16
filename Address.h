@@ -1,11 +1,19 @@
 #ifndef ADDRESS_H_INCLUDED
 #define ADDRESS_H_INCLUDED
 
+// Address class using dynamically allocated strings
 class Address
 {
 public:
     // Constructor
     Address();
+
+    // Destructor
+    ~Address();
+
+    // Copy constructor and assignment
+    Address(const Address&);
+    const Address& operator=(const Address&);
 
     const char * lastname() const { return m_lastname;}
     void lastname(const char *);
@@ -19,16 +27,14 @@ public:
     const char * address() const { return m_address;}
     void address(const char *);
 private:
-    // Enumerate string lengths
-    static const int namelen = 16;
-    static const int phonelen = 16;
-    static const int addrlen = 100;
+    // Variable-length data fields
+    char* m_lastname;
+    char* m_firstname;
+    char* m_address;
+    char* m_phone;
 
-    // Data Fields
-    char m_lastname[namelen];
-    char m_firstname[namelen];
-    char m_phone[phonelen];
-    char m_address[addrlen];
+    // Private function for making a copy of a string:
+    char* dup(const char* source);
 };
 
 #endif // ADDRESS_H_INCLUDED
