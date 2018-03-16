@@ -10,13 +10,13 @@ public:
     const char * lastname() const { return m_lastname;}
     void lastname(const char *);
 
-    const char * firstname() const { return m_lastname;}
+    const char * firstname() const { return m_firstname;}
     void firstname(const char *);
 
-    const char * phone() const { return m_lastname;}
+    const char * phone() const { return m_phone;}
     void phone(const char *);
 
-    const char * address() const { return m_lastname;}
+    const char * address() const { return m_address;}
     void address(const char *);
 private:
     // Enumerate string lengths

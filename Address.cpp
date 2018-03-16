@@ -25,7 +25,7 @@ void Address::firstname(const char *source)
 
 void Address::phone(const char *source)
 {
-    strncpy(m_lastname, source, phonelen - 1);
+    strncpy(m_phone, source, phonelen - 1);
     m_phone[phonelen - 1] = '\0';
 }
 
