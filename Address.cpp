@@ -1,4 +1,5 @@
 #include "Address.h"
+
 #include <cstring>
 
 using std::strcpy;
