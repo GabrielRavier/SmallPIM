@@ -17,8 +17,8 @@ void dump(const Address& a)
 int main()
 {
     Address a;
-    a.lastname("Gabriel");
-    a.firstname("Ravier");
+    a.firstname("Gabriel");
+    a.lastname("Ravier");
     a.phone("(617) 555-9876");
     a.address("The GDN Company\nSomewhere, MA 01000");
     dump(a);

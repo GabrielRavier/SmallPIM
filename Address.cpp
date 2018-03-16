@@ -13,20 +13,24 @@ Address::Address()
 
 void Address::lastname(const char *source)
 {
-    strncpy(m_lastname, source, namelen);
+    strncpy(m_lastname, source, namelen - 1);
+    m_lastname[namelen - 1] = '\0';
 }
 
 void Address::firstname(const char *source)
 {
-    strncpy(m_firstname, source, namelen);
+    strncpy(m_firstname, source, namelen - 1);
+    m_firstname[namelen - 1] = '\0';
 }
 
 void Address::phone(const char *source)
 {
-    strncpy(m_lastname, source, phonelen);
+    strncpy(m_lastname, source, phonelen - 1);
+    m_phone[phonelen - 1] = '\0';
 }
 
 void Address::address(const char *source)
 {
     strncpy(m_address, source, addrlen);
+    m_address[addrlen - 1] = '\0';
 }
