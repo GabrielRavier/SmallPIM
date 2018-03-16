@@ -2,6 +2,9 @@
 
 #include "AddressBook.h"
 
+using std::cout;
+using std::endl;
+
 int AddressBook::m_nextID = 1;
 
 AddressBook::AddressBook()
@@ -71,4 +74,27 @@ throw (AddressNotFound)
 
     m_addresses[index] = addr;
     m_addresses[index].recordID(recordID);
+}
+
+const Address& AddressBook::getAddress(int recordID) const
+throw (AddressNotFound)
+{
+    int index = getByID(recordID);
+    if (index == notFound)
+        throw AddressNotFound();
+
+    return m_addresses[index];
+}
+
+void AddressBook::print() const
+{
+    cout << "******************************************\n";
+    for (unsigned int i = 0; i < m_addresses.size(); ++i)
+    {
+        const Address& a = m_addresses[i];
+        cout << "Record ID: " << a.recordID() << '\n'
+             << a.firstname() << ' ' << a.lastname() << '\n'
+             << a.address() << '\n' << a.phone() << '\n'
+             << endl;
+    }
 }
