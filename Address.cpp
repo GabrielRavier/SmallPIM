@@ -1,8 +1,9 @@
-#include "Address.h"
-
 #include <cstring>
 
+#include "Address.h"
+
 using std::strcpy;
+using std::strncpy;
 
 Address::Address()
 {
@@ -12,20 +13,20 @@ Address::Address()
 
 void Address::lastname(const char *source)
 {
-    strcpy(m_lastname, source);
+    strncpy(m_lastname, source, namelen);
 }
 
 void Address::firstname(const char *source)
 {
-    strcpy(m_firstname, source);
+    strncpy(m_firstname, source, namelen);
 }
 
 void Address::phone(const char *source)
 {
-    strcpy(m_lastname, source);
+    strncpy(m_lastname, source, phonelen);
 }
 
 void Address::address(const char *source)
 {
-    strcpy(m_address, source);
+    strncpy(m_address, source, addrlen);
 }
