@@ -38,6 +38,7 @@ char* Address::dup(const char* source)
     return result;
 }
 
+// Copy constructor
 Address::Address(const Address& a2)
     : m_lastname(0), m_firstname(0), m_address(0), m_phone(0)
 {
@@ -45,8 +46,10 @@ Address::Address(const Address& a2)
     *this = a2;
 }
 
+// Assignment operator
 const Address& Address::operator=(const Address& a2)
 {
+    // Check for self-assignment
     if (this != &a2)
     {
         lastname(a2.m_lastname);
@@ -60,8 +63,10 @@ const Address& Address::operator=(const Address& a2)
 
 void Address::lastname(const char *source)
 {
+    // Check for self-assignment
     if (m_lastname != source)
     {
+        // Avoid memory leaks
         delete[] m_lastname;
         m_lastname = dup(source);
     }
@@ -69,8 +74,10 @@ void Address::lastname(const char *source)
 
 void Address::firstname(const char *source)
 {
+    // Check for self-assignment
     if (m_firstname != source)
     {
+        // Avoid memory leaks
         delete[] m_firstname;
         m_firstname = dup(source);
     }
@@ -78,8 +85,10 @@ void Address::firstname(const char *source)
 
 void Address::phone(const char *source)
 {
+    // Check for self-assignment
     if (m_phone != source)
     {
+        // Avoid memory leaks
         delete[] m_phone;
         m_phone = dup(source);
     }
@@ -87,8 +96,10 @@ void Address::phone(const char *source)
 
 void Address::address(const char *source)
 {
+    // Check for self-assignment
     if (m_address != source)
     {
+        // Avoid memory leaks
         delete[] m_address;
         m_address = dup(source);
     }
