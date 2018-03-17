@@ -13,12 +13,12 @@ int main()
     a.firstname("Gabriel");
     a.lastname("Ravier");
     a.phone("(617) 555-9876");
-    a.address("The GDN Company\nSomewhere, MA 01000");
+    a.address("The CSMC\nSomewhere, MA 01000");
 
     Address b;
     b.firstname("Blargo");
     b.lastname("Balrog");
-    b.phone("(CS) 555-CAVE");
+    b.phone("(CS+) 555-CAVE");
     b.address("Nicalis\nSomewhere idk lol");
 
     Address c;

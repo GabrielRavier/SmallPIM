@@ -7,14 +7,21 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/TinyPIM" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Debug/SmallPIM" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-pg" />
+					<Add option="-m32" />
+					<Add option="-Og" />
 					<Add option="-g" />
 					<Add directory="include" />
 				</Compiler>
+				<Linker>
+					<Add option="-pg -lgmon" />
+					<Add option="-m32" />
+				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/TinyPIM" prefix_auto="1" extension_auto="1" />
@@ -22,11 +29,19 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
-					<Add option="-O2" />
+					<Add option="-march=atom" />
+					<Add option="-fomit-frame-pointer" />
+					<Add option="-fexpensive-optimizations" />
+					<Add option="-flto" />
+					<Add option="-O3" />
+					<Add option="-m32" />
 					<Add directory="include" />
 				</Compiler>
 				<Linker>
+					<Add option="-flto" />
 					<Add option="-s" />
+					<Add option="-static" />
+					<Add option="-m32" />
 				</Linker>
 			</Target>
 		</Build>
