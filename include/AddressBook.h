@@ -1,7 +1,7 @@
 #ifndef ADDRESSBOOK_H
 #define ADDRESSBOOK_H
 
-#include <vector>
+#include <list>
 
 #include "Address.h"
 
@@ -32,13 +32,7 @@ private:
     AddressBook& operator=(const AddressBook&);
 
     static int m_nextID;
-    std::vector<Address> m_addresses;
-
-    // Get the index of the record with the specified Id.
-    // Returns notFound if not found.
-    int getByID(int recordID) const;
-
-    static const int notFound = -1;
+    std::list<Address> m_addresses;
 };
 
 #endif // ADDRESSBOOK_H
