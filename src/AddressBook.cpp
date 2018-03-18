@@ -4,6 +4,7 @@
 
 using std::cout;
 using std::endl;
+using std::list;
 
 int AddressBook::m_nextID = 1;
 
@@ -24,9 +25,14 @@ int AddressBook::insertAddress(const Address& addr,
     else if (recordID >= m_nextID)
         // Make sure nextID is always higher than any known record ID.
         m_nextID = recordID + 1;
-    else if (getByID(recordID) != notFound)
-        // Explicitely-specified ID is not unique
-        throw DuplicateID();
+    else
+    {
+        // Make sure we don't have a duplicate ID
+        for (list<Address>::iterator i = m_addresses.begin(); i != m_addresses.end(); ++i)
+            if (i->recordID() == recordID)
+                // Explicitly-specified ID is not unique
+                throw DuplicateID();
+    }
 
     // Append record onto vector.
     m_addresses.push_back(addr);
@@ -37,29 +43,33 @@ int AddressBook::insertAddress(const Address& addr,
     return recordID;
 }
 
-int AddressBook::getByID(int recordID) const
+AddressBook::addrlist::iterator
+AddressBook::getByID(int recordID) throw (AddressNotFound)
 {
-    // Loop through all the elements and compare each element's record ID with the one we're searching for.
-    for (unsigned int i = 0; i < m_addresses.size(); ++i)
-        if (m_addresses[i].recordID() == recordID)
+    for (addrlist::iterator i = m_addresses.begin();
+         i != m_addresses.end(); ++i)
+        if (i->recordID() == recordID)
             return i;
 
-    return notFound;
+    throw AddressNotFound();
+}
+
+AddressBook::addrlist::const_iterator
+AddressBook::getByID(int recordID) const throw (AddressNotFound)
+{
+    for (addrlist::const_iterator i = m_addresses.begin();
+         i != m_addresses.end(); ++i)
+        if (i->recordID() == recordID)
+            return i;
+
+    throw AddressNotFound();
 }
 
 void AddressBook::eraseAddress(int recordID)
 throw (AddressNotFound)
 {
-    // Find address
-    int index = getByID(recordID);
-    if (index == notFound)
-        throw AddressNotFound();
-
-    // Move element from end of vector to location being erased.
-    m_addresses[index] = m_addresses.back();
-
-    // Remove the now unused last element of the vector.
-    m_addresses.pop_back();
+    addrlist::iterator i = getByID(recordID);
+    m_addresses.erase(i);
 }
 
 void AddressBook::replaceAddress(const Address& addr, int recordID)
@@ -68,30 +78,24 @@ throw (AddressNotFound)
     if (!recordID)
         recordID = addr.recordID();
 
-    int index = getByID(recordID);
-    if (index == notFound)
-        throw AddressNotFound();
+    addrlist::iterator i = getByID(recordID);
 
-    m_addresses[index] = addr;
-    m_addresses[index].recordID(recordID);
+    *i = addr;
+    i->recordID(recordID);
 }
 
-const Address& AddressBook::getAddress(int recordID) const
+const Address& AddressBook::getAddress(int recordID)
 throw (AddressNotFound)
 {
-    int index = getByID(recordID);
-    if (index == notFound)
-        throw AddressNotFound();
-
-    return m_addresses[index];
+    return *getByID(recordID);
 }
 
 void AddressBook::print() const
 {
-    cout << "******************************************\n";
-    for (unsigned int i = 0; i < m_addresses.size(); ++i)
+    for (addrlist::const_iterator i = m_addresses.begin();
+         i != m_addresses.end(); ++i)
     {
-        const Address& a = m_addresses[i];
+        const Address& a = *i;
         cout << "Record ID: " << a.recordID() << '\n'
              << a.firstname() << ' ' << a.lastname() << '\n'
              << a.address() << '\n' << a.phone() << '\n'
