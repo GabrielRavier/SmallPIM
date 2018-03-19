@@ -49,11 +49,13 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="include/Address.h" />
-		<Unit filename="include/AddressBook.h" />
+		<Unit filename="Address.cpp" />
+		<Unit filename="Address.h" />
+		<Unit filename="AddressBook.cpp" />
+		<Unit filename="AddressBook.h" />
+		<Unit filename="Editor.cpp" />
+		<Unit filename="Editor.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="src/Address.cpp" />
-		<Unit filename="src/AddressBook.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
