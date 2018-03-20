@@ -2,8 +2,26 @@
 <results version="2">
     <cppcheck version="1.82" />
     <errors>
+        <error id="syntaxError" severity="error" msg="Code &apos;classAddress{&apos; is invalid C code. Use --std or --language to configure the language." verbose="Code &apos;classAddress{&apos; is invalid C code. Use --std or --language to configure the language.">
+            <location file="Address.h" line="7" />
+        </error>
+        <error id="syntaxError" severity="error" msg="Code &apos;classAddress{&apos; is invalid C code. Use --std or --language to configure the language." verbose="Code &apos;classAddress{&apos; is invalid C code. Use --std or --language to configure the language.">
+            <location file0="AddressBook.h" file="Address.h" line="7" />
+        </error>
+        <error id="noExplicitConstructor" severity="style" msg="Class &apos;AddressEditor&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;AddressEditor&apos; has a constructor with 1 argument that is not explicit. Such constructors should in general be explicit for type safety reasons. Using the explicit keyword in the constructor means some mistakes when using the class can be avoided." cwe="398">
+            <location file0="AddressEditor.cpp" file="AddressEditor.h" line="15" />
+        </error>
+        <error id="syntaxError" severity="error" msg="Code &apos;classEditor{&apos; is invalid C code. Use --std or --language to configure the language." verbose="Code &apos;classEditor{&apos; is invalid C code. Use --std or --language to configure the language.">
+            <location file0="AddressEditor.h" file="Editor.h" line="8" />
+        </error>
+        <error id="syntaxError" severity="error" msg="Code &apos;classEditor{&apos; is invalid C code. Use --std or --language to configure the language." verbose="Code &apos;classEditor{&apos; is invalid C code. Use --std or --language to configure the language.">
+            <location file="Editor.h" line="8" />
+        </error>
         <error id="unreadVariable" severity="style" msg="Variable &apos;b_ID&apos; is assigned a value that is never used." verbose="Variable &apos;b_ID&apos; is assigned a value that is never used." cwe="563">
             <location file="main.cpp" line="29" />
+        </error>
+        <error id="unusedFunction" severity="style" msg="The function &apos;edit&apos; is never used." verbose="The function &apos;edit&apos; is never used." cwe="561">
+            <location file="AddressEditor.cpp" line="19" />
         </error>
         <error id="unusedFunction" severity="style" msg="The function &apos;operator&lt;&apos; is never used." verbose="The function &apos;operator&lt;&apos; is never used." cwe="561">
             <location file="Address.cpp" line="33" />

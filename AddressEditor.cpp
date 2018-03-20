@@ -10,7 +10,7 @@ AddressEditor::AddressEditor()
 }
 
 // Edit an existing Address object
-AddressEditor::AddressEditor(const Addressa& a)
+AddressEditor::AddressEditor(const Address& a)
     : m_addr(a)
 {
 }
@@ -24,13 +24,14 @@ bool AddressEditor::edit()
     string phone(m_addr.phone());
     string address(m_addr.address());
 
+    // Edit each field
     editSingleLine("Last name", lastname) &&
     editSingleLine("First name", firstname) &&
     editSingleLine("Phone Number", phone) &&
     editMultiLine("Address", address);
 
     if (status() == canceled)
-        return false
+        return false;
 
     // Commit changes
     m_addr.lastname(lastname);
