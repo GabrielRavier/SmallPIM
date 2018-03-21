@@ -21,7 +21,15 @@ public:
     bool edit();
 
     // This accessor is used to set the Address object to edit:
-    void addr(const Address& a) { m_addr = a; }
+    Address addr()
+    {
+        return m_addr;
+    }
+
+    void addr(const Address& a)
+    {
+        m_addr = a;
+    }
 
 private:
     // Disable copying
