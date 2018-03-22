@@ -41,3 +41,4 @@ bool AddressEditor::edit()
 
     return true;
 }
+

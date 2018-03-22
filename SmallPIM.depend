@@ -12,9 +12,10 @@
 	<string>
 	<utility>
 
-1521446140 source:c:\users\gabriel\onedrive\documents\ecole\franc_sais\3e\chapitre_1\snes_roms\c_programs\c++_source_and_tutorials\smallpim\main.cpp
+1521618884 source:c:\users\gabriel\onedrive\documents\ecole\franc_sais\3e\chapitre_1\snes_roms\c_programs\c++_source_and_tutorials\smallpim\main.cpp
 	<iostream>
-	"AddressBook.h"
+	"Address.h"
+	"AddressEditor.h"
 
 1521405891 c:\users\gabriel\onedrive\documents\ecole\franc_sais\3e\chapitre_1\snes_roms\c_programs\c++_source_and_tutorials\smallpim\include\address.h
 	<string>
@@ -31,8 +32,8 @@
 1521405974 source:c:\users\gabriel\onedrive\documents\ecole\franc_sais\3e\chapitre_1\snes_roms\c_programs\c++_source_and_tutorials\smallpim\src\address.cpp
 	"Address.h"
 
-1521393176 c:\users\gabriel\onedrive\documents\ecole\franc_sais\3e\chapitre_1\snes_roms\c_programs\c++_source_and_tutorials\smallpim\addressbook.h
-	<list>
+1521630819 c:\users\gabriel\onedrive\documents\ecole\franc_sais\3e\chapitre_1\snes_roms\c_programs\c++_source_and_tutorials\smallpim\addressbook.h
+	<set>
 	"Address.h"
 
 1521465409 source:c:\users\gabriel\onedrive\documents\ecole\franc_sais\3e\chapitre_1\snes_roms\c_programs\c++_source_and_tutorials\smallpim\editor.cpp
@@ -42,15 +43,17 @@
 1521465261 c:\users\gabriel\onedrive\documents\ecole\franc_sais\3e\chapitre_1\snes_roms\c_programs\c++_source_and_tutorials\smallpim\editor.h
 	<string>
 
-1521443415 source:c:\users\gabriel\onedrive\documents\ecole\franc_sais\3e\chapitre_1\snes_roms\c_programs\c++_source_and_tutorials\smallpim\addressbook.cpp
-	<iostream>
+1521630339 source:c:\users\gabriel\onedrive\documents\ecole\franc_sais\3e\chapitre_1\snes_roms\c_programs\c++_source_and_tutorials\smallpim\addressbook.cpp
 	"AddressBook.h"
+	<iostream>
+	<algorithm>
+	<functional>
 
-1521531026 source:c:\users\gabriel\onedrive\documents\ecole\franc_sais\3e\chapitre_1\snes_roms\c_programs\c++_source_and_tutorials\smallpim\addresseditor.cpp
+1521619812 source:c:\users\gabriel\onedrive\documents\ecole\franc_sais\3e\chapitre_1\snes_roms\c_programs\c++_source_and_tutorials\smallpim\addresseditor.cpp
 	"AddressEditor.h"
 	<iostream>
 
-1521466059 c:\users\gabriel\onedrive\documents\ecole\franc_sais\3e\chapitre_1\snes_roms\c_programs\c++_source_and_tutorials\smallpim\addresseditor.h
+1521619811 c:\users\gabriel\onedrive\documents\ecole\franc_sais\3e\chapitre_1\snes_roms\c_programs\c++_source_and_tutorials\smallpim\addresseditor.h
 	"Editor.h"
 	"Address.h"
 

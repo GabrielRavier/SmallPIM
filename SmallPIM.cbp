@@ -53,6 +53,8 @@
 		<Unit filename="Address.h" />
 		<Unit filename="AddressBook.cpp" />
 		<Unit filename="AddressBook.h" />
+		<Unit filename="AddressEditor.cpp" />
+		<Unit filename="AddressEditor.h" />
 		<Unit filename="Editor.cpp" />
 		<Unit filename="Editor.h" />
 		<Unit filename="main.cpp" />

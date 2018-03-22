@@ -8,7 +8,7 @@ using std::endl;
 
 void dump (const Address& a)
 {
-    cout << "Record : " << a.recordID() << '\n'
+    cout << "Record " << a.recordID() << '\n'
          << a.firstname() << ' ' << a.lastname() << '\n'
          << a.address() << '\n' << a.phone() << '\n' << endl;
 }
