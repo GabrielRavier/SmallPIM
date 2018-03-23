@@ -2,21 +2,25 @@
 
 using std::string;
 
+/// m_lastname = source;
 void Address::lastname(const string& source)
 {
     m_lastname = source;
 }
 
+/// m_firstname = source;
 void Address::firstname(const string& source)
 {
     m_firstname = source;
 }
 
+/// m_phone = source;
 void Address::phone(const string& source)
 {
     m_phone = source;
 }
 
+/// m_address = source;
 void Address::address(const string& source)
 {
     m_address = source;

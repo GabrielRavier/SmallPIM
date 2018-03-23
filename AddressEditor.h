@@ -8,35 +8,36 @@
 class AddressEditor : public Editor
 {
 public:
-    // Start with an empty Address object
+    /// Start with an empty Address object
     AddressEditor();
 
-    // Edit an existing Address object
+    /// Edit an existing Address object
     AddressEditor(const Address& a);
 
     // Use compiler-generated destructor
     // ~AddressEditor();
 
-    // Main loop returns true if address was successfully edited, false if edit was aborted
+    /// Main loop returns true if address was successfully edited, false if edit was aborted
     bool edit();
 
-    // This accessor is used to set the Address object to edit:
+    /// return m_addr;
     Address addr()
     {
         return m_addr;
     }
 
+    /// m_addr = a;
     void addr(const Address& a)
     {
         m_addr = a;
     }
 
 private:
-    // Disable copying
+    /// Disable copying
     AddressEditor(const AddressEditor&);
     const AddressEditor& operator=(const AddressEditor&);
 
-    // Member variables
+    /// Address to be edited
     Address m_addr;
 };
 

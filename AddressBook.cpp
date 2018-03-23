@@ -12,6 +12,7 @@ using std::unary_function;
 using std::find_if;
 using std::make_pair;
 
+
 int AddressBook::m_nextID = 1;
 
 AddressBook::AddressBook()
@@ -49,8 +50,7 @@ int AddressBook::insertAddress(const Address& addr,
     return recordID;
 }
 
-AddressBook::addrlist::iterator
-AddressBook::getByID(int recordID) throw (AddressNotFound)
+AddressBook::addrByName_t::iterator AddressBook::getByID(int recordID) throw (AddressNotFound)
 {
     // Find record by ID
     addrByID_t::iterator IDIter = m_addrByID.find(recordID);
@@ -60,8 +60,7 @@ AddressBook::getByID(int recordID) throw (AddressNotFound)
     return IDIter->second;
 }
 
-AddressBook::addrlist::const_iterator
-AddressBook::getByID(int recordID) const throw (AddressNotFound)
+AddressBook::addrByName_t::const_iterator AddressBook::getByID(int recordID) const throw (AddressNotFound)
 {
     // Find record by ID
     addrByID_t::const_iterator IDIter = m_addrByID.find(recordID);
@@ -74,7 +73,7 @@ AddressBook::getByID(int recordID) const throw (AddressNotFound)
 void AddressBook::eraseAddress(int recordID)
 throw (AddressNotFound)
 {
-    addrlist::iterator i = getByID(recordID);
+    addrByName_t::iterator i = getByID(recordID);
 
     // Remove entry from both containers
     m_addresses.erase(i);
@@ -97,13 +96,13 @@ throw (AddressNotFound)
     return *getByID(recordID);
 }
 
-// Function object to compare the name fields of two Address objects
+/// Function object to compare the name fields of two Address objects
 struct AddressNameEqual :
     public binary_function<Address, Address, bool>
 {
+    /// Returns true if names match
     bool operator()(const Address& a1, const Address& a2) const
     {
-        // Return true if names match
         return (a1.lastname() == a2.lastname() &&
                 a1.firstname() == a2.lastname());
     }
@@ -122,9 +121,7 @@ int AddressBook::countName(const string& lastname,
 
 /* Find first Address with name greater-or-equal to specified name.
    Usually, this will be a name that starts with the specified strings. */
-
-AddressBook::const_iterator
-AddressBook::findNameStartsWith(const string& lastname,
+AddressBook::const_iterator AddressBook::findNameStartsWith(const string& lastname,
                                 const string& firstname) const
 {
     Address searchAddr;
@@ -134,15 +131,16 @@ AddressBook::findNameStartsWith(const string& lastname,
     return m_addresses.lower_bound(searchAddr);
 }
 
-// Function object class to search for a string within an Address.
+/// Function object class to search for a string within an Address.
 class AddressContainsStr : public unary_function<Address, bool>
 {
 public:
     AddressContainsStr(const string& str) : m_str(str) { }
 
+
+    /// Returns true if any Address field contains m_str
     bool operator()(const Address& a)
     {
-        // Return true if any Address field contains m_str
         return (a.lastname().find(m_str) != string::npos ||
                 a.firstname().find(m_str) != string::npos ||
                 a.phone().find(m_str) != string::npos ||
@@ -155,8 +153,7 @@ private:
 
 /* Find next Address in which any field contains the specified string.
    Indicate starting point for search with start parameter. */
-AddressBook::const_iterator
-AddressBook::findNextContains(const string& searchStr,
+AddressBook::const_iterator AddressBook::findNextContains(const string& searchStr,
                               const_iterator start) const
 {
     return find_if(start, m_addresses.end(),
@@ -164,8 +161,7 @@ AddressBook::findNextContains(const string& searchStr,
 }
 
 // Return iterator to specified records ID.
-AddressBook::const_iterator
-AddressBook::findRecordID(int recordID) const throw (AddressNotFound)
+AddressBook::const_iterator AddressBook::findRecordID(int recordID) const throw (AddressNotFound)
 {
     return getByID(recordID);
 }
