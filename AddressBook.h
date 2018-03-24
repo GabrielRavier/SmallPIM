@@ -20,10 +20,14 @@ public:
     class AddressNotFound {};
     class DuplicateID {};
 
-    /// Insert addr into address multiset. recordID optional.
+    /** \param addr : Address to be inserted
+        \param recordID : Optional, ID of addr
+    */
     int insertAddress(const Address& addr, int recordID = 0)
     throw (DuplicateID);
-    /// Erase address with specified ID
+    /** Erase address with specified ID
+        \param recordID : ID of the record to be erased
+    */
     void eraseAddress(int recordID) throw (AddressNotFound);
     /// Replace address with specified ID with addr, or find duplicate of addr and replace that
     void replaceAddress(const Address& addr, int recordID = 0)

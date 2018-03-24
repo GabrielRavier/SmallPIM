@@ -16,40 +16,40 @@ public:
        Address& operator=(const Address&);
     */
 
-    /// return m_recordID;
+    /// \return Returns recordID of the address
     int recordID() const
     {
         return m_recordID;
     }
 
-    /// m_recordID = i;
+    /// \param i : New recordID
     void recordID(int i)
     {
         m_recordID = i;
     }
 
-    /// return m_lastname;
+    /// \return Returns lastname of the address
     std::string lastname() const
     {
         return m_lastname;
     }
     void lastname(const std::string&);
 
-    /// return m_firstname;
+    /// \return Returns firstname of the address
     std::string firstname() const
     {
         return m_firstname;
     }
     void firstname(const std::string&);
 
-    /// return m_phone;
+    /// \return returns phone of the address
     std::string phone() const
     {
         return m_phone;
     }
     void phone(const std::string&);
 
-    /// return m_address;
+    /// return Returns address of the address
     std::string address() const
     {
         return m_address;
