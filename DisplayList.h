@@ -10,7 +10,9 @@
 class DisplayList
 {
 public:
+    /// Constructor sets screen size
     DisplayList(int linesPerScreen = 15);
+    /// Destructor doesn't have to do much
     virtual ~DisplayList();
 
     /// Display the list

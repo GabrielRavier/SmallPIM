@@ -45,7 +45,7 @@ public:
     */
     bool editMultiLine(const std::string& prompt, std::string& value);
 
-    /// Return the status of the edit.
+    /// return m_status;
     editStatus status() const
     {
         return m_status;

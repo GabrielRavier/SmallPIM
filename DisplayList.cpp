@@ -23,17 +23,17 @@ using std::find;
 using std::cin;
 
 
-/// Constructor sets screen size
+// Constructor sets screen size
 DisplayList::DisplayList(int linesPerScreen)
     : m_linesPerScreen(linesPerScreen)
 {
     reset();
 }
 
-/// Destructor doesn't have to do much
+// Destructor doesn't have to do much
 DisplayList::~DisplayList() { }
 
-/// Clear all data
+// Clear all data
 void DisplayList::reset()
 {
     m_cache.clear();
@@ -42,7 +42,7 @@ void DisplayList::reset()
     m_firstVisibleIDx = 0;
 }
 
-/** Fill cache in the forward direction. Specify start index and number of desired records.
+/* Fill cache in the forward direction. Specify start index and number of desired records.
     If not enough records are available, will set m_cachedLast. */
 void DisplayList::fillCacheFwd(unsigned int start, int numNeeded)
 {
@@ -69,8 +69,8 @@ void DisplayList::fillCacheFwd(unsigned int start, int numNeeded)
     }
 }
 
-/** Fill cache in the backward direction. Specify start index and number of desired records.
-    If not enough records are available, will set m_cachedFirst. */
+/* Fill cache in the backward direction. Specify start index and number of desired records.
+   If not enough records are available, will set m_cachedFirst. */
 void DisplayList::fillCacheBwd(unsigned int start, int numNeeded)
 {
     int startID = 0;
@@ -184,7 +184,7 @@ bool DisplayList::atEnd()
     return (m_cachedLast && (m_cache.size() - m_firstVisibleIDx <= m_linesPerScreen));
 }
 
-/// Scroll so that specified record is at top of the screen.
+// Scroll so that specified record is at top of the screen.
 void DisplayList::scrollToTop(int recordID)
 {
     assert(recordID != 0);
@@ -205,7 +205,7 @@ void DisplayList::scrollToTop(int recordID)
     fillCacheFwd(m_firstVisibleIDx, m_linesPerScreen);
 }
 
-/// Return ID of nth record on screen
+// Return ID of nth record on screen
 int DisplayList::screenRecord(int n) const
 {
     if (m_firstVisibleIDx + n >= m_cache.size())

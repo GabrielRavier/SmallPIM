@@ -155,5 +155,18 @@ bool AddressDisplayList::findNameStartsWith(const string& lastname, const string
 // List only those records that contain the specified string
 void AddressDisplayList::listContainsString(const string& s)
 {
+    if (m_containsString == s)
+        return;
 
+    reset();
+    m_containsString = s;
+
+    // Next call to display() will cause search
+}
+
+// List all records (use after a listContainsString)
+void AddressDisplayList::listAll()
+{
+    listContainsString("");
+    toStart();
 }
