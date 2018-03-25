@@ -42,6 +42,12 @@ public:
         m_menuStack.pop();
     }
 
+    /// Returns true if there is an active menu
+    static bool isActive()
+    {
+        return !m_menuStack.empty();
+    }
+
 protected:
     // Utilities for use by derived classes:
 

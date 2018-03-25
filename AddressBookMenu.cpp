@@ -50,10 +50,13 @@ void AddressBookMenu::mainLoop()
         break;
     case 'A':
         listAll();
+        break;
     case 'L':
         lookup();
+        break;
     case 'S':
         search();
+        break;
     case 'R':
         // Do nothing, just loop
         break;

@@ -1,30 +1,25 @@
 #include <iostream>
 
-#include "Address.h"
-#include "AddressEditor.h"
+#include "AddressBook.h"
+#include "AddressBookMenu.h"
 
 using std::cout;
 using std::endl;
 
-void dump (const Address& a)
-{
-    cout << "Record " << a.recordID() << '\n'
-         << a.firstname() << ' ' << a.lastname() << '\n'
-         << a.address() << '\n' << a.phone() << '\n' << endl;
-}
-
+// Main program just calls main menu, for now.
 int main()
 {
-    Address a;
+    AddressBook addrBook;
 
-    AddressEditor editor(a);
-    while (a.lastname() != "done")
-    {
-        editor.edit();
-        a = editor.addr();
-        cout << endl;
-        dump(a);
-    }
+    // Create address book menu and push on menu stack.
+    AddressBookMenu addrBookMenu(addrBook);
+    Menu::enterMenu(&addrBookMenu);
+
+    // Process menu choices until menu exits.
+    while (Menu::isActive())
+        Menu::activeMenu()->mainLoop();
+
+    cout << "\nThank you for using SmallPIM !\n" << endl;
 
     return 0;
 }
