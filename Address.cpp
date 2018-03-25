@@ -3,25 +3,25 @@
 using std::string;
 
 /// \param source : new lastname
-void Address::lastname(const string& source)
+void Address::lastname(const std::string& source)
 {
     m_lastname = source;
 }
 
 /// \param source : new lastname
-void Address::firstname(const string& source)
+void Address::firstname(const std::string& source)
 {
     m_firstname = source;
 }
 
 /// \param source : new phone
-void Address::phone(const string& source)
+void Address::phone(const std::string& source)
 {
     m_phone = source;
 }
 
 /// \param source : new address
-void Address::address(const string& source)
+void Address::address(const std::string& source)
 {
     m_address = source;
 }

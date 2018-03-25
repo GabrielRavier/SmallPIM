@@ -240,13 +240,13 @@ int DisplayList::selectRecord()
             /* Recoverable input error. (User typed a non-numeric input).
                Clear error condition and throw away rest of input line then continue loop */
             cin.clear();
-            cin.ignore(10000, '\n');
+            cin.ignore(INT_MAX, '\n');
             cout << "Invalid selection, please try again.\n\n";
             continue;
         }
 
         // Throw away rest of input line
-        cin.ignore(10000, '\n');
+        cin.ignore(INT_MAX, '\n');
 
         if (selection == 0)
             return 0;

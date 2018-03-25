@@ -31,7 +31,7 @@ char Menu::getMenuSelection(const std::string& menu, const std::string& choices)
             break;
 
         // Throw away rest of input line
-        cin.ignore(10000, '\n');
+        cin.ignore(INT_MAX, '\n');
 
         // Search for selection in either uppercase and lowercase
         if (choices.find(toupper(selection)) != string::npos || choices.find(tolower(selection)) != string::npos)
