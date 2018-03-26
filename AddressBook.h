@@ -3,13 +3,20 @@
 
 #include <set>
 #include <map>
+#include <functional>
 
 #include "Address.h"
+
+/// Case-insensitive Address less-than object
+struct AddressLess : public std::binary_function<Address, Address, bool>
+{
+    bool operator()(const Address& a1, const Address& a2) const;
+};
 
 class AddressBook
 {
     /// Shorthand name for multiset type
-    typedef std::multiset<Address>                addrByName_t;
+    typedef std::multiset<Address, AddressLess>   addrByName_t;
     typedef std::map<int, addrByName_t::iterator> addrByID_t;
 
 public:

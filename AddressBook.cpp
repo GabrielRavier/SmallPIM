@@ -11,7 +11,41 @@ using std::lower_bound;
 using std::unary_function;
 using std::find_if;
 using std::make_pair;
+using std::lexicographical_compare;
+using std::tolower;
+using std::toupper;
 
+/// Non-case-sensitive character less-than function object
+struct ci_less_char : public binary_function<char, char, bool>
+{
+    bool operator()(char c1, char c2) const
+    {
+        return toupper(c1) < toupper(c2);
+    }
+};
+
+/// Algorithm for non-case-sensitive lexicographical comparison of two character sequences
+template <class FwdIter1, class FwdIter2>
+bool ci_less(FwdIter1 b1, FwdIter1 e1, FwdIter2 b2, FwdIter2 e2)
+{
+    return lexicographical_compare(b1, e1, b2, e2, ci_less_char());
+}
+
+/// Non-case-sensitive string comparison function
+bool ciStringLess(const string& s1, const string& s2)
+{
+    return ci_less(s1.begin(), s1.end(), s2.begin(), s2.end());
+}
+
+bool AddressLess::operator ()(const Address& a1, const Address& a2) const
+{
+    if (ciStringLess(a1.lastname(), a2.lastname()))
+        return true;
+    else if (ciStringLess(a2.lastname(), a1.lastname()))
+        return false;
+    else
+        return ciStringLess(a1.firstname(), a2.firstname());
+}
 
 int AddressBook::m_nextID = 1;
 

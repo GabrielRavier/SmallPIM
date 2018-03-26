@@ -80,7 +80,7 @@ void AddressBookMenu::viewEntry()
     cout << "\nName : " << addr.lastname();
     if (!addr.firstname().empty())
         cout << ", " << addr.firstname();
-    cout << "\nPhone : " << addr.firstname();
+    cout << "\nPhone : " << addr.phone();
     cout << "\nAddress : " << addr.address();
 
     cout << "\n\nPress [RETURN] when ready.";

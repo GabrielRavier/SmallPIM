@@ -2,6 +2,7 @@
 
 #include <cctype>
 #include <iostream>
+#include <cstdlib>
 
 using std::tolower;
 using std::toupper;
@@ -46,8 +47,7 @@ char Menu::getMenuSelection(const std::string& menu, const std::string& choices)
 // Clear the screen
 void Menu::clearScreen()
 {
-    // Because not all terminals respond to the formfeed character to clear the screen, we also output 25 newlines
-    cout << "\f\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << flush;
+    system("cls");
 }
 
 // Define m_menuStack member variable

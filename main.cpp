@@ -3,6 +3,8 @@
 #include "AddressBook.h"
 #include "AddressBookMenu.h"
 
+extern void generateAddresses(AddressBook& addrbook, int numAddresses);
+
 using std::cout;
 using std::endl;
 
@@ -10,6 +12,9 @@ using std::endl;
 int main()
 {
     AddressBook addrBook;
+
+    // Generate 50 random address-book entries
+    generateAddresses(addrBook, 50);
 
     // Create address book menu and push on menu stack.
     AddressBookMenu addrBookMenu(addrBook);
