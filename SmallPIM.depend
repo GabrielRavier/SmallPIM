@@ -12,10 +12,14 @@
 	<string>
 	<utility>
 
-1522048340 source:c:\users\gabriel\onedrive\documents\ecole\franc_sais\3e\chapitre_1\snes_roms\c_programs\c++_source_and_tutorials\smallpim\main.cpp
+1522140332 source:c:\users\gabriel\onedrive\documents\ecole\franc_sais\3e\chapitre_1\snes_roms\c_programs\c++_source_and_tutorials\smallpim\main.cpp
 	<iostream>
+	<cstdlib>
+	<iomanip>
 	"AddressBook.h"
 	"AddressBookMenu.h"
+	"AddressEditor.h"
+	"DateTime.h"
 
 1521405891 c:\users\gabriel\onedrive\documents\ecole\franc_sais\3e\chapitre_1\snes_roms\c_programs\c++_source_and_tutorials\smallpim\include\address.h
 	<string>
@@ -45,9 +49,10 @@
 1521879194 c:\users\gabriel\onedrive\documents\ecole\franc_sais\3e\chapitre_1\snes_roms\c_programs\c++_source_and_tutorials\smallpim\editor.h
 	<string>
 
-1522068661 source:c:\users\gabriel\onedrive\documents\ecole\franc_sais\3e\chapitre_1\snes_roms\c_programs\c++_source_and_tutorials\smallpim\addressbook.cpp
+1522084665 source:c:\users\gabriel\onedrive\documents\ecole\franc_sais\3e\chapitre_1\snes_roms\c_programs\c++_source_and_tutorials\smallpim\addressbook.cpp
 	"AddressBook.h"
 	<algorithm>
+	<iostream>
 
 1521834264 source:c:\users\gabriel\onedrive\documents\ecole\franc_sais\3e\chapitre_1\snes_roms\c_programs\c++_source_and_tutorials\smallpim\addresseditor.cpp
 	"AddressEditor.h"
@@ -57,7 +62,7 @@
 	"Editor.h"
 	"Address.h"
 
-1521910476 source:c:\users\gabriel\onedrive\documents\ecole\franc_sais\3e\chapitre_1\snes_roms\c_programs\c++_source_and_tutorials\smallpim\displaylist.cpp
+1522139165 source:c:\users\gabriel\onedrive\documents\ecole\franc_sais\3e\chapitre_1\snes_roms\c_programs\c++_source_and_tutorials\smallpim\displaylist.cpp
 	"DisplayList.h"
 	<cassert>
 	<iostream>
@@ -111,10 +116,11 @@
 	<iomanip>
 	"AddressBook.h"
 
-1522070352 source:c:\users\gabriel\onedrive\documents\ecole\franc_sais\3e\chapitre_1\snes_roms\c_programs\c++_source_and_tutorials\smallpim\datetime.cpp
+1522136191 source:c:\users\gabriel\onedrive\documents\ecole\franc_sais\3e\chapitre_1\snes_roms\c_programs\c++_source_and_tutorials\smallpim\datetime.cpp
 	"DateTime.h"
+	<iomanip>
 
-1522070821 c:\users\gabriel\onedrive\documents\ecole\franc_sais\3e\chapitre_1\snes_roms\c_programs\c++_source_and_tutorials\smallpim\datetime.h
+1522135333 c:\users\gabriel\onedrive\documents\ecole\franc_sais\3e\chapitre_1\snes_roms\c_programs\c++_source_and_tutorials\smallpim\datetime.h
 	<iostream>
 	<string>
 	<ctime>

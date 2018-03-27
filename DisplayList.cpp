@@ -220,7 +220,7 @@ int DisplayList::selectRecord()
     {
         unsigned maxSelection = min(int(m_cache.size() - m_firstVisibleIDx), (int)m_linesPerScreen);
 
-        if (maxSelection <= 0)
+        if (!maxSelection)
         {
             cout << "No records to select\n";
             return 0;

@@ -38,7 +38,7 @@ public:
 
     friend std::ostream& operator<<(std::ostream& os, const DateTime& dt);
 
-    friend std::istream& operator>>(std::istream& is, const DateTime& dt);
+    friend std::istream& operator>>(std::istream& is, DateTime& dt);
 
     private:
     /// Date and time

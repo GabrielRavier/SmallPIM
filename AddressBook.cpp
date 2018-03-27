@@ -1,7 +1,10 @@
 #include "AddressBook.h"
 
 #include <algorithm>
+#include <iostream>
 
+using std::cout;
+using std::endl;
 using std::count;
 using std::string;
 using std::binary_function;
@@ -198,4 +201,15 @@ AddressBook::const_iterator AddressBook::findNextContains(const string& searchSt
 AddressBook::const_iterator AddressBook::findRecordID(int recordID) const throw (AddressNotFound)
 {
     return getByID(recordID);
+}
+
+void AddressBook::print() const
+{
+    cout << "******************************************\n";
+    for (addrByName_t::const_iterator i = m_addresses.begin(); i != m_addresses.end(); ++i)
+    {
+        const Address& a = *i;
+        cout << "Record ID : " << a.recordID() << '\n' << a.firstname() << ' ' << a.lastname() << '\n' << a.address() << '\n'
+             << a.phone() << '\n' << endl;
+    }
 }
