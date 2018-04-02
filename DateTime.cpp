@@ -29,6 +29,24 @@ void DateTime::get(int& year, int& month, int& day, int& hour, int& min) const
     min     = mytm->tm_min;
 }
 
+void DateTime::getDate(int& year, int& month, int& day) const
+{
+    int hour, min;
+    get(year, month, day, hour, min);
+}
+
+void DateTime::getTime(int& hour, int& min) const
+{
+    int year, month, day;
+    get(year, month, day, hour, min);
+}
+
+// Return the day of the week (range 0 = Sunday to 6 = Saturday)
+int DateTime::dayOfWeek() const
+{
+    return localtime(&m_DateTime)->tm_wday;
+}
+
 DateTime& DateTime::set(int year, int month, int day, int hour, int min)
 {
     /* Years from 0-49 are assumed to mean 2000-2049. Years 1900 or over are assumed to be 4-digit years.
@@ -52,6 +70,159 @@ DateTime& DateTime::set(int year, int month, int day, int hour, int min)
     return *this;
 }
 
+DateTime& DateTime::setDate(int year, int month, int day)
+{
+    int hour, min;
+    getTime(hour, min);
+    set(year, month, day, hour, min);
+
+    return *this;
+}
+
+DateTime& DateTime::setTime(int hour, int min)
+{
+    int year, month, day;
+    getDate(year, month, day);
+    set(year, month, day, hour, min);
+
+    return *this;
+}
+
+std::string DateTime::dateStr() const
+{
+    char buf[20];
+    strftime(buf, 20, "%x", localtime(&m_DateTime));
+    return buf;
+}
+
+std::string DateTime::timeStr() const
+{
+    char buf[20];
+    strftime(buf, sizeof(buf), "%I:%M%p", localtime(&m_DateTime));
+    return buf;
+}
+
+
+// Name of day of the week
+std::string DateTime::wdayName() const
+{
+    char buf[30];
+    strftime(buf, sizeof(buf), "%A", localtime(&m_DateTime));
+    return buf;
+}
+
+// Name of month of the year
+std::string DateTime::monthName() const
+{
+    char buf[30];
+    strftime(buf, sizeof(buf), "%B", localtime(&m_DateTime));
+    return buf;
+}
+
+bool DateTime::dateStr(const std::string& s)
+{
+    char slash1, slash2;
+    int mon, day, year;
+
+    // Unpack the date part using a string stream
+    istringstream tempstream(s);
+    tempstream >> mon >> slash1 >> day >> slash2 >> year;
+
+    // Check for error in date
+    if (tempstream.fail() || slash1 != '/' || slash2 != '/' || mon < 1 || 12 < mon || day < 1 || 31 < day)
+        return false;
+
+    setDate(year, mon, day);
+    return true;
+}
+
+bool DateTime::timeStr(const std::string& s)
+{
+    char colon;
+    int hour, min;
+    char ampm[3];
+
+    istringstream tempstream(s);
+    tempstream >> hour >> colon >> min;
+
+    // Check for error in time
+    if (tempstream.fail() || hour < 0 || 23 < hour || min < 0 || 59 < min)
+        return false;
+
+    // Check for am/pm indicator
+    tempstream >> setw(3) >> ampm;
+    bool useAmPm = ! tempstream.fail();
+
+    // Convert hour from 12-hour to 24-hour format (0-23)
+    if (useAmPm)
+    {
+        if (hour == 12)
+            hour = 0;
+        if (ampm[0] == 'p' || ampm[0] == 'P')
+            hour += 12;
+    }
+
+    setTime(hour, min);
+    return true;
+}
+
+// Return this day at midnight
+DateTime DateTime::startOfDay() const
+{
+    tm DtTm = *localtime(&m_DateTime);
+    DtTm.tm_hour = 0;
+    DtTm.tm_min = 0;
+    DtTm.tm_sec = 0;
+    DtTm.tm_isdst = -1;
+
+    DateTime result;
+    result.m_DateTime = mktime(&DtTm);
+    return result;
+}
+
+// Return most recent Sunday at midnight
+DateTime DateTime::startOfWeek() const
+{
+    tm DtTm = *localtime(&m_DateTime);
+    DtTm.tm_mday -= DtTm.tm_wday;   // Substract current day-of week
+    DtTm.tm_hour = 0;
+    DtTm.tm_min = 0;
+    DtTm.tm_sec = 0;
+    DtTm.tm_isdst = -1;
+
+    DateTime result;
+    result.m_DateTime = mktime(&DtTm);
+    return result;
+}
+
+// Return first day of this month
+DateTime DateTime::startOfMonth() const
+{
+    tm DtTm = *localtime(&m_DateTime);
+    DtTm.tm_mday = 1;
+    DtTm.tm_hour = 0;
+    DtTm.tm_min = 0;
+    DtTm.tm_sec = 0;
+    DtTm.tm_isdst = -1;
+
+    DateTime result;
+    result.m_DateTime = mktime(&DtTm);
+    return result;
+}
+
+// Add a certain number of days to the date
+DateTime DateTime::addDay(int days) const
+{
+    tm DtTm = *localtime(&m_DateTime);
+    DtTm.tm_mday += days;
+    DtTm.tm_isdst = -1;
+
+    DateTime result;
+    result.m_DateTime = mktime(&DtTm);
+    return result;
+}
+
+// Get the current date and time
 DateTime DateTime::now()
 {
     DateTime ret;
@@ -61,80 +232,36 @@ DateTime DateTime::now()
 
 std::ostream& operator<<(std::ostream& os, const DateTime& dt)
 {
-    ostringstream tempstring;
-
-    tm DateTm = *localtime(&dt.m_DateTime);
-
-    tempstring << (DateTm.tm_mon + 1) << '/' << DateTm.tm_mday << '/' << (DateTm.tm_year + 1900) << ' ';
-
-    int hour = DateTm.tm_hour % 12;
-    const char* ampm = (DateTm.tm_hour < 12 ? "am" : "pm");
-
-    if (!hour)
-        hour = 12;
-
-    tempstring << setfill(' ') << right << setw(2) << hour << ':' << setfill('0') << right << setw(2) << DateTm.tm_min << ampm;
-
-    return os << tempstring.str();
+    return os << (dt.dateStr() + " " + dt.timeStr());
 }
 
 std::istream& operator>>(std::istream& is, DateTime& dt)
 {
+    DateTime result;
+
     // First, read the date part
     string date;
     is >> date;
     if (is.fail())
         return is;  // I/O error
 
-    char slash1, slash2, colon;
-    int mon, day, year, hour, min;
-    char ampm[3];
-
-    // Unpack the date using a string stream
-    istringstream tempdate(date);
-    tempdate >> mon >> slash1 >> day >> slash2 >> year;
-
-    // Check for error in date
-    if (tempdate.fail() || slash1 != '/' || slash2 != '/' || mon < 1 || 12 < mon || day < 1 || 31 < day)
+    if (!result.dateStr(date))
     {
-        // Format error, set fail bit and return
         is.clear(ios::failbit);
-        return is;
+        return is;  // Format error
     }
 
-    // Now read the time part
     string time;
     is >> time;
     if (is.fail())
         return is;  // I/O error
 
-    // Unpack the time part using the string stream. Do not read am/pm indicator yet
-    tempdate.clear();
-    tempdate.str(time);
-    tempdate >> hour >> colon >> min;
-
-    // Check for error in time
-    if (tempdate.fail() || hour < 0 || 23 < hour || min < 0 || 59 < min)
+    if (!result.timeStr(time))
     {
-        // Format error, set fail bit and return
         is.clear(ios::failbit);
-        return is;
+        return is;  // Format error
     }
 
-    // Check for am/pm indicator
-    tempdate >> setw(3) >> ampm;
-    bool useAsPm = ! tempdate.fail();
-
-    // Convert hour from 12-hour to 24-hour format (0-23)
-    if (useAsPm)
-    {
-        if (hour == 12)
-            hour = 0;
-        if (ampm[0] == 'p' || ampm[0] == 'P')
-            hour += 12;
-    }
-
-    dt = DateTime(year, mon, day, hour, min);
-
+    dt = result;
     return is;
 }

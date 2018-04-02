@@ -24,27 +24,25 @@ public:
     ~AddressBook();
 
     // Exception classes
+    /// Address lookup failed
     class AddressNotFound {};
+    /// Duplicate ID was discovered
     class DuplicateID {};
 
     /** \param addr : Address to be inserted
         \param recordID : Optional, ID of addr
     */
-    int insertAddress(const Address& addr, int recordID = 0)
-    throw (DuplicateID);
+    int insertAddress(const Address& addr, int recordID = 0) throw (DuplicateID);
     /** Erase address with specified ID
         \param recordID : ID of the record to be erased
     */
     void eraseAddress(int recordID) throw (AddressNotFound);
     /// Replace address with specified ID with addr, or find duplicate of addr and replace that
-    void replaceAddress(const Address& addr, int recordID = 0)
-    throw (AddressNotFound);
+    void replaceAddress(const Address& addr, int recordID = 0) throw (AddressNotFound);
     /// Find address by ID
-    const Address& getAddress(int recordID)
-    throw (AddressNotFound);
+    const Address& getAddress(int recordID) throw (AddressNotFound);
     /// Return number of records found with specified name
-    int countName(const std::string& lastname,
-                  const std::string& firstname) const;
+    int countName(const std::string& lastname, const std::string& firstname) const;
 
     /// Iterator to traverse address records;
     typedef addrByName_t::const_iterator const_iterator;
@@ -63,18 +61,15 @@ public:
     /** Find first Address with name greater-or-equal to specified name.
         Usually, this will be a name that starts with the specified strings.
     */
-    const_iterator findNameStartsWith(const std::string& lastname,
-                                      const std::string& firstname="") const;
+    const_iterator findNameStartsWith(const std::string& lastname, const std::string& firstname="") const;
 
     /** Find next Address in which any field contains the specified string.
         Indicate starting point for search with start parameter.
     */
-    const_iterator findNextContains(const std::string& searchStr,
-                                    const_iterator start) const;
+    const_iterator findNextContains(const std::string& searchStr, const_iterator start) const;
 
     /// Return iterator to specified records ID.
-    const_iterator findRecordID(int recordID) const
-        throw (AddressNotFound);
+    const_iterator findRecordID(int recordID) const throw (AddressNotFound);
 
     /// Test routine to print out contents of address book
     void print() const;

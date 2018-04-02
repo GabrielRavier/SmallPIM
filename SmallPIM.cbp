@@ -59,17 +59,42 @@
 		<Unit filename="AddressDisplayList.h" />
 		<Unit filename="AddressEditor.cpp" />
 		<Unit filename="AddressEditor.h" />
+		<Unit filename="Appointment.cpp" />
+		<Unit filename="Appointment.h" />
+		<Unit filename="AppointmentDisplayList.cpp" />
+		<Unit filename="AppointmentDisplayList.h" />
+		<Unit filename="AppointmentEditor.cpp" />
+		<Unit filename="AppointmentEditor.h" />
+		<Unit filename="DateBook.cpp" />
+		<Unit filename="DateBook.h" />
+		<Unit filename="DateBookMenu.cpp" />
+		<Unit filename="DateBookMenu.h" />
+		<Unit filename="DateTime.cpp" />
+		<Unit filename="DateTime.h" />
 		<Unit filename="DisplayList.cpp" />
 		<Unit filename="DisplayList.h" />
 		<Unit filename="Editor.cpp" />
 		<Unit filename="Editor.h" />
+		<Unit filename="MainMenu.cpp" />
+		<Unit filename="MainMenu.h" />
 		<Unit filename="Menu.cpp" />
 		<Unit filename="Menu.h" />
+		<Unit filename="PIMData.h" />
+		<Unit filename="TestData.cpp" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
 			<debugger />
+			<DoxyBlocks>
+				<comment_style block="0" line="2" />
+				<doxyfile_project />
+				<doxyfile_build />
+				<doxyfile_warnings />
+				<doxyfile_output />
+				<doxyfile_dot />
+				<general />
+			</DoxyBlocks>
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>
